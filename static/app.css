@@ -1,0 +1,87 @@
+img {
+    height: 100px;
+    width: 100px;
+}
+
+form {
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+
+}
+
+button {
+    width: 80px;
+}
+
+main {
+    display: flex;
+    align-items: left;
+    flex-direction: row;
+}
+
+label {
+    width: 300px;
+}
+
+input {
+    width: 300px;
+}
+
+#edit {
+    background-color: rgb(80, 80, 214);
+    color: white;
+    font: bold;
+    border-radius: 4px;
+    margin: 4px;
+    border: solid 2px rgb(65, 65, 172);
+}
+#delete {
+    background-color: rgb(240, 65, 65);
+    color: white;
+    font: bold;
+    border-radius: 4px;
+    margin: 4px;
+    border: solid 2px rgb(202, 54, 54);
+}
+
+#add_user {
+    background-color: grey;
+    color: white;
+    font: bold;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 4px;
+    border: solid rgb(104, 104, 104) 2px;
+}
+#cancel {
+    background-color: whitesmoke;
+    border: solid teal 2px; 
+    color: teal;
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 4px;
+    margin: 4px;
+    height: 17px;
+    width: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.save {
+    background-color: rgb(65, 240, 132);
+    color: white;
+    font: bold;
+    border-radius: 4px;
+    margin: 4px;
+    border: rgb(45, 199, 104) solid 2px;
+    padding: 4px;
+    
+}
+
+#edit_save {
+    height: 17px;
+    width: 68px;
+}
