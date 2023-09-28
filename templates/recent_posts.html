@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Recent Posts {% endblock %}
+
+{% block content %}
+    <h1>Blogly Recent Posts</h1>
+
+    <section>
+        
+        {% for post in posts %}
+
+        <div>
+            <h2>{{post.title}}</h2>
+            <h3>{{post.content}}</h3>
+            <h4>{{post.user.full_name}} on {{post.created_at.strftime("%a %b %Y, %I:%M %p")}}</h4>
+        </div>
+
+        {% endfor%}       
+ 
+    </section>
+    
+    
+
+{% endblock %}

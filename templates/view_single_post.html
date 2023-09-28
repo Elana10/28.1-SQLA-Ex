@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} {{post.title}} {% endblock %}
+
+{% block content %}
+    <h1>{{post.title}}</h1>
+    <h2> <a href="/users/{{post.user.id}}">{{post.user.full_name}}</a> </h2>
+    <p>{{post.created_at.strftime("%a %b %Y, %I:%M %p")}}</p>
+    <p>{{post.content}}</p>
+
+    <section>
+        <a href="/posts/{{post.id}}/edit">Edit Post</a>
+        <a href="/posts/{{post.id}}/delete">Delete</a>
+    </section>
+
+
+{% endblock %}

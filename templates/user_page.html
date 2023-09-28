@@ -23,6 +23,20 @@
                     <button name = "delete" id="delete">Delete</button>
                 </form> 
             </main>
+
+            <h3>Posts</h3>
+            <main>
+                <ul>
+                    {% for post in user.posts %}
+                        <li>
+                            <a href="/posts/{{post.id}}">{{post.title}}</a> 
+                        </li>
+                    {% endfor %}
+                </ul>
+                
+                
+            </main>
+            <a href="/users/{{user.id}}/posts/new">Add Post</a>
             
         </div>
          
@@ -31,6 +45,4 @@
     
     
     
-
-    <a href="/users">View User List</a>
 {% endblock %}

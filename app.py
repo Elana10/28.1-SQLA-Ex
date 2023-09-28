@@ -1,8 +1,10 @@
 """Blogly application."""
-
+ 
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
+from datetime import datetime
+from sqlalchemy import desc
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
@@ -16,11 +18,12 @@ connect_db(app)
 
 app.app_context().push()
 # ACCESS FLASK WITHIN IPYTHON AND HAVE SESSIONS
- 
+  
 @app.route('/')
 def home_page():
     """Hold please."""
-    return redirect ('/users')
+    posts = Post.query.order_by(desc(Post.created_at)).limit(5)
+    return render_template('recent_posts.html', posts = posts)
 
 @app.route('/users')
 def list_users():
@@ -73,8 +76,28 @@ def edit_user(user_id):
 
         db.session.commit()
 
-        # return f"first: {user.first_name} last: {user.last_name} url: {user.image_url}"
         return redirect(f'/users/{user.id}')
+
+@app.route('/posts/<int:post_id>/edit', methods = ['POST', 'GET'])
+def edit_post(post_id):
+    """Edit a post"""
+    post = Post.query.get_or_404(post_id)
+
+    if request.method == 'GET':
+        return render_template('edit_post_page.html', post=post)
+    
+    if request.method == 'POST':
+        title = request.form['title']
+        if title != '':
+            post.title = title
+        content = request.form['content']
+        if content != '':
+            post.content = content
+        post.created_at = datetime.now()
+
+        db.session.commit()
+
+        return redirect(f'/posts/{post_id}')
 
 @app.route('/users/<int:user_id>/delete', methods = ["POST"])
 def delete_the_user(user_id):
@@ -83,3 +106,35 @@ def delete_the_user(user_id):
     db.session.commit()
 
     return redirect('/')
+
+@app.route('/users/<int:user_id>/posts/new', methods = ['POST', 'GET'])
+def create_new_post_form(user_id):
+    user = User.query.get_or_404(user_id)
+
+    if request.method == 'GET':
+        return render_template('new_post_form.html', user=user)
+    
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        created_at = datetime.now()
+        #Current date and time. 
+
+        new_post = Post(title = title, content=content, created_at = created_at, user_id = user.id)
+        db.session.add(new_post)
+        db.session.commit()
+
+        return redirect(f'/users/{user.id}')
+    
+@app.route('/posts/<int:post_id>')
+def view_single_post(post_id):
+    post = Post.query.get_or_404(post_id)
+
+    return render_template("view_single_post.html", post=post)
+
+@app.route('/posts/<int:post_id>/delete')
+def delete_post(post_id):
+    Post.query.filter(Post.id == post_id).delete()
+    db.session.commit()
+    return redirect('/users')
+ 
