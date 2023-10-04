@@ -1,6 +1,6 @@
 """Seed file to make sample data for blogly_db for User and Posts"""
 
-from models import User, Post, db
+from models import User, Post, db, Tag, PostTag
 from app import app
 from datetime import datetime
 
@@ -16,14 +16,32 @@ u4 = User(first_name = 'Billy', last_name = 'Bob', image_url = '')
 db.session.add_all([u1,u2,u3,u4])
 db.session.commit()
 
-p1 = Post(title = "The Coming Moon", content = "1 lorem ipsum ... ", created_at = "2023-09-28 15:08:49.476432", user_id = 1)
-p2 = Post(title = "Babies", content = "2 lorem ipsum ... ", created_at = "2023-09-27 15:08:49.476432", user_id = 2)
-p3 = Post(title = "Sleep is good", content = "3 lorem ipsum ... ", created_at = "2023-06-28 15:08:49.476432", user_id = 2)
-p4 = Post(title = "I will survive", content = "4 lorem ipsum ... ", created_at = "2023-04-28 15:08:49.476432", user_id = 2)
-p5 = Post(title = "Money money", content = "5 lorem ipsum ... ", created_at = "2023-09-28 5:08:49.476432", user_id = 3)
-p6 = Post(title = "Dance all night", content = "6 lorem ipsum ... ", created_at = "2023-09-28 1:08:49.476432", user_id = 3)
-p7 = Post(title = "Can't stop me", content = "7 lorem ipsum ... ", created_at = "2023-09-22 15:08:49.476432", user_id = 3)
-p8 = Post(title = "You can do it", content = "8 lorem ipsum ... ", created_at = "2023-09-25 15:08:49.376432", user_id = 3)
+p1 = Post(title = "The Coming Moon", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-09-28 15:08:49.476432", user_id = 1)
+p2 = Post(title = "Babies", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-09-27 15:08:49.476432", user_id = 2)
+p3 = Post(title = "Sleep is good", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-06-28 15:08:49.476432", user_id = 2)
+p4 = Post(title = "I will survive", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-04-28 15:08:49.476432", user_id = 2)
+p5 = Post(title = "Money money", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-09-28 5:08:49.476432", user_id = 3)
+p6 = Post(title = "Dance all night", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-09-28 1:08:49.476432", user_id = 3)
+p7 = Post(title = "Can't stop me", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-09-22 15:08:49.476432", user_id = 3)
+p8 = Post(title = "You can do it", content = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex nam cum earum mollitia. At error itaque nulla perspiciatis quidem voluptas natus officiis iste, numquam temporibus tempora, dolor, non ut fuga?", created_at = "2023-09-25 15:08:49.376432", user_id = 3)
 
 db.session.add_all([p1,p2,p3,p4,p5,p6,p7,p8])
+db.session.commit() 
+
+t1 = Tag(name= "Funny")
+t2 = Tag(name = "Cat")
+t3 = Tag(name = "Adventure")
+
+db.session.add_all([t1,t2,t3])
+db.session.commit()
+
+pt1 = PostTag(post_id = 1, tag_id = 1)
+pt2 = PostTag(post_id = 1, tag_id = 2)
+pt3 = PostTag(post_id = 1, tag_id = 3)
+pt4 = PostTag(post_id = 2, tag_id = 3)
+pt5 = PostTag(post_id = 3, tag_id = 2)
+pt6 = PostTag(post_id = 4, tag_id = 3)
+pt7 = PostTag(post_id = 5, tag_id = 1)
+
+db.session.add_all([pt1,pt2,pt3,pt4,pt5,pt6,pt7])
 db.session.commit() 

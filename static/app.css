@@ -28,6 +28,51 @@ input {
     width: 300px;
 }
 
+p input{
+    display: flex;
+    align-items: left;
+    width: 10px;
+}
+p {
+    display: flex;
+    align-items: left;
+    margin: 1px;
+}
+
+a {
+    margin: 8px;
+}
+
+input{
+    margin: 4px;
+}
+
+.save {
+    background-color: rgb(65, 240, 132);
+    color: white;
+    font: bold;
+    border-radius: 4px;
+    margin: 4px;
+    border: rgb(45, 199, 104) solid 2px;
+    padding: 4px;
+    
+}
+
+.duplicate_tag {
+    background: rgb(179, 82, 82);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 330px;
+}
+#post_content{
+    height: 100px;
+    margin-top: 4px;
+}
+
+
 #edit {
     background-color: rgb(80, 80, 214);
     color: white;
@@ -70,16 +115,7 @@ input {
 
 }
 
-.save {
-    background-color: rgb(65, 240, 132);
-    color: white;
-    font: bold;
-    border-radius: 4px;
-    margin: 4px;
-    border: rgb(45, 199, 104) solid 2px;
-    padding: 4px;
-    
-}
+
 
 #edit_save {
     height: 17px;

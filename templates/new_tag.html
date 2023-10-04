@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Create a New Tag {% endblock %}
+
+{% block content %}
+
+
+    <h1>New Tag</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true)%}
+        {% if messages %}
+            {% for category,msg in messages %}
+                <section class = "{{category}}">{{msg}}</section>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="/tags/new" method = "POST">
+        <label for="tag_name">Enter New Tag: </label>
+        <input type="text" name= "tag_name" id= "tag_name"placeholder="Enter A New Tag">
+        
+        <main>
+            <a href="/tags">Cancel</a>
+            <button class="save">Create Tag</button>
+        </main>
+        
+    </form>
+
+
+
+{% endblock %}
